@@ -27,6 +27,10 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <link href="jquery.bootstrap.treeselect.css" rel="stylesheet">
+  <script src="js/jquery.bootstrap.treeselect.js"></script>
+
+
   <!-- =======================================================
   * Template Name: Bocor - v2.1.0
   * Template URL: https://bootstrapmade.com/bocor-bootstrap-template-nice-animation/
@@ -42,7 +46,7 @@
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html">Bocor<span>.</span></a></h1>
+        <h1 class="text-light"><a href="index.html">DTB<span>.</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -87,21 +91,98 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Inner Page</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Inner Page</li>
-          </ol>
+          <h2>Our Product Listing</h2>
+            <div class="ui dropdown">
+              <div class="text">File</div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item">New</div>
+                <div class="item">
+              
+                </div>
+                <div class="item">
+                  <span class="description">ctrl + r</span>
+                  Rename
+                </div>
+                <div class="item">Make a copy</div>
+                <div class="item">
+                  <i class="folder icon"></i>
+                  Move to folder
+                </div>
+                <div class="item">
+                  <i class="trash icon"></i>
+                  Move to trash
+                </div>
+                <div class="divider"></div>
+                <div class="item">Download As...</div>
+                <div class="item">
+                  <i class="dropdown icon"></i>
+                  Publish To Web
+                  <div class="menu">
+                    <div class="item">Google Docs</div>
+                    <div class="item">Google Drive</div>
+                    <div class="item">Dropbox</div>
+                    <div class="item">Adobe Creative Cloud</div>
+                    <div class="item">Private FTP</div>
+                    <div class="item">Another Service...</div>
+                  </div>
+                </div>
+                <div class="item">E-mail Collaborators</div>
+              </div>
+            </div>
+          {% comment %}
+          <select name = "filter">
+            <option value = "lowHigh">Country</option> 
+            <option value = "lowHigh"> Price: Low to High </option> 
+            <option value = "lowHigh"> Price: Low to High </option>
+            <option value = <option value = "lowHigh">Country</option> 
+            <option value = "lowHigh"> Price: Low to High </option> 
+            <option value = "lowHigh"> Price: Low to High </option> </option> {% comment %}
+
+          {% comment %} <select name = "filter">
+           
+          <option value = "lowHigh">Country</option> 
+          <option value = "lowHigh"> Price: Low to High </option> 
+          <option value = "lowHigh"> Price: Low to High </option>
+          <option value = "lowHigh"><input class="form-control" id="myInput" type="text" placeholder="Search.."></option> {% endcomment %}
+
         </div>
+   
 
       </div>
     </section><!-- End Breadcrumbs Section -->
 
     <section class="inner-page">
       <div class="container">
-        <p>
-          Example inner page template
-        </p>
+             <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Country</th>
+                  <th scope="col">Company</th>
+                  <th scope="col">Policy Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Review</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+
+              </tbody>
+            </table>
       </div>
     </section>
 
