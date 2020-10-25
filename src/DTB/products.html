@@ -27,9 +27,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <link href="jquery.bootstrap.treeselect.css" rel="stylesheet">
-  <script src="js/jquery.bootstrap.treeselect.js"></script>
-
 
   <!-- =======================================================
   * Template Name: Bocor - v2.1.0
@@ -54,30 +51,10 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
-          <li class="drop-down"><a href="">Drop Down</a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="drop-down"><a href="#">Drop Down 2</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact Us</a></li>
-
-          <li class="get-started"><a href="#about">Get Started</a></li>
+          <li><a href="index.html">About Us</a></li>
+          <li><a href="index.html">Insurance Products</a></li>
+          <li><a href="#portfolio">Product Listings</a></li>
+          <li><a href="index.html">Team</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -89,70 +66,18 @@
     <!-- ======= Breadcrumbs Section ======= -->
     <section class="breadcrumbs">
       <div class="container">
-
         <div class="d-flex justify-content-between align-items-center">
           <h2>Our Product Listing</h2>
-            <div class="ui dropdown">
-              <div class="text">File</div>
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <div class="item">New</div>
-                <div class="item">
-              
-                </div>
-                <div class="item">
-                  <span class="description">ctrl + r</span>
-                  Rename
-                </div>
-                <div class="item">Make a copy</div>
-                <div class="item">
-                  <i class="folder icon"></i>
-                  Move to folder
-                </div>
-                <div class="item">
-                  <i class="trash icon"></i>
-                  Move to trash
-                </div>
-                <div class="divider"></div>
-                <div class="item">Download As...</div>
-                <div class="item">
-                  <i class="dropdown icon"></i>
-                  Publish To Web
-                  <div class="menu">
-                    <div class="item">Google Docs</div>
-                    <div class="item">Google Drive</div>
-                    <div class="item">Dropbox</div>
-                    <div class="item">Adobe Creative Cloud</div>
-                    <div class="item">Private FTP</div>
-                    <div class="item">Another Service...</div>
-                  </div>
-                </div>
-                <div class="item">E-mail Collaborators</div>
-              </div>
-            </div>
-          {% comment %}
+          <input type="text" placeholder="Search..">
           <select name = "filter">
             <option value = "lowHigh">Country</option> 
             <option value = "lowHigh"> Price: Low to High </option> 
-            <option value = "lowHigh"> Price: Low to High </option>
-            <option value = <option value = "lowHigh">Country</option> 
-            <option value = "lowHigh"> Price: Low to High </option> 
-            <option value = "lowHigh"> Price: Low to High </option> </option> {% comment %}
-
-          {% comment %} <select name = "filter">
-           
-          <option value = "lowHigh">Country</option> 
-          <option value = "lowHigh"> Price: Low to High </option> 
-          <option value = "lowHigh"> Price: Low to High </option>
-          <option value = "lowHigh"><input class="form-control" id="myInput" type="text" placeholder="Search.."></option> {% endcomment %}
-
+            <option value = "lowHigh"> Price: High to Low </option>
         </div>
-   
-
       </div>
     </section><!-- End Breadcrumbs Section -->
 
-    <section class="inner-page">
+      <section class="inner-page">
       <div class="container">
              <table class="table table-hover">
               <thead>
@@ -184,7 +109,7 @@
               </tbody>
             </table>
       </div>
-    </section>
+      </section>
 
   </main><!-- End #main -->
 
