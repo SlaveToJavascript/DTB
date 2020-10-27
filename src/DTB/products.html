@@ -49,14 +49,21 @@
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="index.html">About Us</a></li>
-          <li><a href="index.html">Insurance Products</a></li>
-          <li><a href="products.html">Product Listings</a></li>
-          <li><a href="index.html">Team</a></li>
+        <ul id = "navigation">
+          <li class="drop-down"><a href="index.html">Home</a>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#services">Insurance Products</a></li>
+              <li><a href="#team">Team</a></li>
+            </ul>
+          </li>  
+          <li><a href= "products.html" class = "active">Insurance Product Listing</a></li>
+          <li><a href= "Loans.html" >Get a Loan</a></li>
+          <li class="get-started"><a href= login.html>Login</a></li>
+          <li><a href = "login.html" class = "nav-link link-scroll" id = "logout">Logout</a></li>
         </ul>
-      </nav><!-- .nav-menu -->
+      </nav>
+  <!-- nav-menu -->
 
     </div>
   </header><!-- End Header -->
@@ -70,13 +77,14 @@
           <h2>Our Product Listing</h2>
           <!-- <input type="text" placeholder="Search for a product.."> -->
           <select name = "filter">
-            <option value = "lowHigh">Country</option> 
+            <option value = "lowHigh">Country</option>
+            <option value = "lowHigh"> Company </option> 
             <option value = "lowHigh"> Price: Low to High </option> 
             <option value = "lowHigh"> Price: High to Low </option>
         </div>
       </div>
     </section><!-- End Breadcrumbs Section -->
-
+<!-- add a for loop for the table portion -->
       <section class="inner-page">
       <div class="container">
              <table class="table table-hover">
