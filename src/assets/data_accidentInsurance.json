@@ -1,0 +1,62 @@
+{
+  "0": {
+    "Name": "Aviva Personal Accident Lite",
+    "Cost": "S$85.50/annum*",
+    "Properties": {
+      "Accidental Death or TPD": " $100,000",
+      "Accident Related Medical Expenses": " $3,000",
+      "TCM or Chiropractor Treatment (as a sub-limit of accident medical expenses)": " $500",
+      "Daily Hospital Allowance              (up to 30 days)": " $50/day",
+      "Personal Liability": "  $100,000",
+      "Weekly Temporary Disablement Benefit (up to 104 weeks)": "  up to $200/week",
+      "Mobility Aid & Ambulance Services Reimbursement": "  $2,000"
+    }
+  },
+  "1": {
+    "Name": "  ProtectionPlus Silver Plan ",
+    "Cost": "S$86.14/annum*",
+    "Properties": {
+      "Accidental Death or TPD": " $100,000",
+      "Accident Related Medical Expenses": " $1,000",
+      "TCM Treatment": " $1,000",
+      "Daily Hospital Allowance (up to 50 days)": " $50/day",
+      "Mobility Aid": " $1,000"
+    }
+  },
+  "2": {
+    "Name": "  ePROTECT safety Enhanced Silver",
+    "Cost": "S$18/monthly renewable*",
+    "Properties": {
+      "Accidental Death or TPD": " $100,000",
+      "Accident Related Medical Expenses": " $2,000",
+      "TCM Treatment": " up to $150/visit",
+      "Daily Hospital Allowance (up to 180 days)": " $50/day",
+      "Mobility Aid": " $1,000",
+      "Limited Time Offer": " Complimentary special coverage for COVID-19 & Dengue Fever up to $3,000 in the event of a confirmed diagnosis"
+    }
+  },
+  "3": {
+    "Name": "  PA Supreme Plan A",
+    "Cost": "S$158.36/annum*",
+    "Properties": {
+      "Accidental Death or TPD": " $100,000",
+      "Accident Related Medical Expenses": " $2,000",
+      "TCM Treatment (excluding the first $50)": " $150/accident",
+      "Daily Hospital Allowance (up to 90 days)": " $100/day",
+      "Personal Effects & Belongings": "  $200",
+      "Mobility Aid": " $1,000",
+      "Medical Evacuation/ Repatriation": " $50,000"
+    }
+  },
+  "4": {
+    "Name": "  Family Protect360 Silver",
+    "Cost": "S$148.30/annum*",
+    "Properties": {
+      "Accidental Death or TPD": " $100,000",
+      "Accident Related Medical Expenses": " $1,000/adult, $200/child",
+      "Parent(s) Support Grant": " $3,000",
+      "Child's Education Grant": " $7,000",
+      "No Claim Bonus": " 15%"
+    }
+  }
+}
