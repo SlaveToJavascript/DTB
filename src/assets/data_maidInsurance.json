@@ -1,0 +1,66 @@
+{
+  "0": {
+    "Name": "MSIG MaidPlus - Standard (26 months)",
+    "Coverage": {
+      "Personal Accident": "$60,000",
+      "Hospital & Surgical Expenses": "$15,000",
+      "Yearly Premium": "$214.00"
+    }
+  },
+  "1": {
+    "Name": "FWD Maid Insurance - Essential (26 months)",
+    "Coverage": {
+      "Personal Accident": "$60,000",
+      "Hospital & Surgical Expenses": "$15,000",
+      "Yearly Premium": "$224.27"
+    }
+  },
+  "2": {
+    "Name": "FWD Maid Insurance - Enhanced (26 months)",
+    "Coverage": {
+      "Personal Accident": "$60,000",
+      "Hospital & Surgical Expenses": "$20,000",
+      "Yearly Premium": "$268.22"
+    }
+  },
+  "3": {
+    "Name": "Great Eastern MaidGR8 - Plan B (26 months)",
+    "Coverage": {
+      "Personal Accident": "$60,000",
+      "Hospital & Surgical Expenses": "Up to $15,000",
+      "Yearly Premium": "$278.20"
+    }
+  },
+  "4": {
+    "Name": "MSIG MaidPlus - Classic (26 months)",
+    "Coverage": {
+      "Personal Accident": "$60,000",
+      "Hospital & Surgical Expenses": "$30,000",
+      "Yearly Premium": "$291.04"
+    }
+  },
+  "5": {
+    "Name": "FWD Maid Insurance - Exclusive (26 months)",
+    "Coverage": {
+      "Personal Accident": "$60,000",
+      "Hospital & Surgical Expenses": "$25,000",
+      "Yearly Premium": "$315.30"
+    }
+  },
+  "6": {
+    "Name": "MSIG MaidPlus - Premier (26 months)",
+    "Coverage": {
+      "Personal Accident": "$60,000",
+      "Hospital & Surgical Expenses": "$50,000",
+      "Yearly Premium": "$333.84"
+    }
+  },
+  "7": {
+    "Name": "Great Eastern MaidGR8 - Plan C (26 months)",
+    "Coverage": {
+      "Personal Accident": "$60,000",
+      "Hospital & Surgical Expenses": "Up to $30,000",
+      "Yearly Premium": "$353.10"
+    }
+  }
+}
