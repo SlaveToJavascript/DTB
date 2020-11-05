@@ -97,6 +97,282 @@
       <section class="inner-page">
       <div class="container">
         <h1> There are 2 payment options that you can use to purchase your insurance!</h1>
+        <!--  tBank API for direct debit -->
+        <br/>
+        <h2 class="page-header" style="color:#937851">1. Payment via tBank</h2>
+
+<div class="container">
+    <div class="col-md-6">
+        <form class="form-horizontal well" style="padding-bottom: 0px;">
+          <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+						<span class="input-group-text">User ID</span>
+					  </div>
+					  <input id="userID" type="text" class="form-control">
+					  <div class="input-group-prepend">
+						<span class="input-group-text">Password</span>
+					  </div>
+					  <input id="PIN" type="password" class="form-control">
+          </div>
+          <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+						<span class="input-group-text">Account FROM</span>
+					  </div>
+					  <input id="accountFrom" type="text" class="form-control" placeholder=" eg. 6890">
+					  <input id="accountTo" type="text" value= "6699" class="form-control" hidden>
+          </div>
+          <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+						<span class="input-group-text">Transaction Amount</span>
+					  </div>
+					  <input id="transactionAmount" type="text" class="form-control">
+          </div>
+          <!-- <div id="otpModal" class="input-group mb-3">
+					  <div class="input-group-prepend">
+						<span class="input-group-text">OTP</span>
+					  </div>
+					  <input id="OTP" type="text" class="form-control" placeholder="10">
+          </div> -->
+					  <input id="transactionReferenceNumber" value="100" type="text" class="form-control" placeholder="10" hidden>
+          <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+						<span class="input-group-text">Narrative</span>
+					  </div>
+					  <input id="narrative" type="text" value="bill" class="form-control" placeholder="10">
+          </div>
+          <div style="color: red;" id="error"></div>
+          <div class="form-group">
+            <button id="Send" type="button" class="btn btn-primary Send">Pay</button>
+            <button type="reset" class="btn btn-default">Clear</button>
+          </div>
+          <div id="otpModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">2FA Authorisation</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Please enter the OTP below</p>
+                  <p>
+                    <input id="OTP" type="text" class="form-control" placeholder="10">
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary Send confirmation">Verify</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="confirmationModal" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="icon-box">
+                    <i class="material-icons">&#xE876;</i>
+                  </div>				
+                  <h4>Awesome!</h4>	
+                </div>
+                <div class="modal-body">
+                  <p class="text-center">Your payment has been confirmed!</p>
+                  <p class="text-center"> Transaction ID is <label id="transactionID"></label> </p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                </div>
+              </div>
+            </div>
+          </div>     
+          
+        </form>
+        
+        
+    </div>
+</div>
+
+<!-- javascript libraries
+======================================== -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+      
+      // function to populate drop-down menu
+      // function addOption(){
+      //     var length = countBillingOrg();
+      //     for (var i=0; i < length;i++){
+      //         billingOrgName = retrieveBillingOrgName(i);
+      //         billingOrgAccountID = retrieveBillingOrgAccountID(i);
+      //         var optn = document.createElement("OPTION");
+      //         optn.setAttribute("value", billingOrgAccountID);
+      //         var t = document.createTextNode(billingOrgName);
+      //         optn.appendChild(t);
+      //         document.getElementById("Options").appendChild(optn);
+      //     }
+      // }
+      
+      // Populate drop-down menu when page loads
+      // window.onload = addOption();
+      
+      
+      // init user credentials
+      // document.getElementById("userID").value = getUserID();
+      // document.getElementById("PIN").value = getPIN();
+      
+
+      /*----------------------------------------
+       * [Send] button clicked
+       */
+      $(".Send").click(function (event) {
+          (function() {
+
+              // set service header values
+              var serviceName = "billPayment";
+              var userID = document.getElementById("userID").value;
+              // setUserID(userID);
+              var PIN = document.getElementById("PIN").value;
+              var OTP = document.getElementById("OTP").value;
+              // setPIN(PIN);
+              
+              // get and validate form values
+              var accountFrom = document.getElementById("accountFrom").value;
+              if (accountFrom === ""){
+                  showErrorModal("Account FROM cannot be blank.");
+                  return;  
+              }
+              var accountTo = document.getElementById("accountTo").value;
+              if (accountTo === ""){
+                  showErrorModal("Account TO cannot be blank.");
+                  return;  
+              }
+              var transactionAmount = document.getElementById("transactionAmount").value;
+              if (transactionAmount === ""){
+                  showErrorModal("Transaction Amount cannot be blank.");
+                  return;  
+              }
+              var transactionReferenceNumber = document.getElementById("transactionReferenceNumber").value;
+              var narrative = document.getElementById("narrative").value;
+
+              // disable Send button
+              // document.getElementById("Send").disabled = true;
+
+              // set request parameters
+              var headerObj = {
+                  Header: {
+                      serviceName: serviceName,
+                      userID: userID,
+                      PIN: PIN,
+                      OTP: OTP
+                  }
+              };
+              var contentObj = {
+                  Content: {
+                      accountFrom: accountFrom,
+                      accountTo: accountTo,
+                      transactionAmount: transactionAmount,
+                      transactionReferenceNumber: transactionReferenceNumber,
+                      narrative: narrative
+                  }
+              };
+              var header = JSON.stringify(headerObj);
+              var content = JSON.stringify(contentObj);
+
+              // setup http request
+              var xmlHttp = new XMLHttpRequest();
+              if (xmlHttp === null){
+                  alert("Browser does not support HTTP request.");
+                  return;
+              }
+              xmlHttp.open("POST", getApiURL()+"?Header="+header+"&Content="+content, true);
+              xmlHttp.timeout = 5000;
+
+              // setup http event handlers
+              xmlHttp.onreadystatechange = function() {
+                  if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                      responseObj = JSON.parse(xmlHttp.responseText);
+                      console.log(responseObj);
+                      serviceRespHeader = responseObj.Content.ServiceResponse.ServiceRespHeader;
+                      globalErrorID = serviceRespHeader.GlobalErrorID;
+                      if (globalErrorID === "010041"){
+                         showOTPModal();
+                          return;
+                      }
+                      else if (globalErrorID !== "010000"){
+                          showErrorModal(serviceRespHeader.ErrorDetails);
+                          return;
+                      }
+                      
+                      // get data
+                      transactionID = responseObj.Content.ServiceResponse.TransactionID._content_;
+              
+
+                      // display data
+                      document.getElementById("transactionID").innerHTML = transactionID;
+                      // document.getElementById("balanceBefore").value = addCommas(balanceBefore);
+                      // document.getElementById("balanceAfter").value = addCommas(balanceAfter);
+                      
+                      // enable Send button
+                      document.getElementById("Send").disabled = false;
+                  }
+              };
+              xmlHttp.ontimeout = function (e) {
+                  showErrorModal("Timeout invoking API.");
+                  return;
+              };					
+
+              // send the http request
+              xmlHttp.send();
+
+          })();
+      });
+
+      /* ----------------------------------------
+       * error model close button clicked
+       */
+      $("#CloseError").click(function (event) {
+          (function() {
+              document.getElementById("Send").disabled = false;
+          })();
+      });
+
+      /* ----------------------------------------
+       * OTP model update button clicked
+       */
+      $("#UpdateOTP").click(function (event) {
+          (function() {
+              var OTP = document.getElementById("OTP").value;
+              setOTP(OTP, function() { // ensure OTP set before clicking Send
+                  document.getElementById("Send").disabled = false;
+                  document.getElementById("Send").click();
+              });
+          })();
+      });
+  });
+  function showErrorModal(error){
+    document.getElementById("error").innerHTML = error;
+  }
+  function getApiURL(){
+      return "http://tbankonline.com/SMUtBank_API/Gateway";
+  }
+
+  function showOTPModal(){
+    $("#otpModal").modal('show');
+  }
+  $(".confirmation").click(function(){
+    $("#otpModal").modal('hide');
+    $("#confirmationModal").modal('show');
+  });
+
+</script>
+
+
+
+
+
+        <!-- End tBank API for direct debit -->
         <h2>1. Payment via Installments</h2>
         <br>
         <h4>Get a loan from tBank to pay your insurance!</h4>
@@ -126,7 +402,6 @@
 						<span class="input-group-text" id="firstname">First name</span>
 					  </div>
 					  <input type="text" class="form-control" placeholder="John" aria-label="First name" aria-describedby="basic-addon1">
-					
 					  <div class="input-group-prepend">
 						<span class="input-group-text" id="lastname">Last name</span>
 					  </div>
