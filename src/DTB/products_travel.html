@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>View Products</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+
+  <!-- =======================================================
+  * Template Name: Bocor - v2.1.0
+  * Template URL: https://bootstrapmade.com/bocor-bootstrap-template-nice-animation/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="index.html">DTB<span>.</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul id = "navigation">
+          <li class="drop-down"><a href="index.html" class = "active">Home</a>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#insurance">Insurance Products</a></li>
+              <li><a href="#team">Team</a></li>
+            </ul>
+          </li>  
+          <li class="drop-down"><a href="#" class = "active">Insurance Products</a>
+            <ul>
+              <li><a href="products_maid.html">Maid Insurance</a></li>
+              <li><a href="products_travel.html">Travel Insurance</a></li>
+              <li><a href="products_accident.html">Accident Insurance</a></li>
+            </ul>
+          </li>
+          <li><a href = "cart.html"> Your Cart <i class="fa fa-shopping-cart"style="font-size:17px"></i> </a></li>
+          
+          <li class="get-started"><a href= login.html>Login</a></li>
+          <li><a href = "login.html" class = "nav-link link-scroll" id = "logout">Logout</a></li>
+        </ul>
+      </nav>
+      <!-- nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+  <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Travel Insurance</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Travel Insurance Product Listing</li>
+          </ol>
+          <!-- <input type="text" placeholder="Search for a product.."> -->
+          
+        </div>
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+<!-- add a for loop for the table portion -->
+    <section class="inner-page" style="padding-top: 20px;">
+      <div class="container">
+
+        <!-- dropdown -->
+        <div class="dropdown text-right mb-4">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Country
+          </button>
+          <div id="dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            
+          </div>
+        </div>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Country</th>
+              <th scope="col">Company</th>
+              <th scope="col">Policy Name</th>
+              <th scope="col">Cost</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr class="accordion-toggle collapsed" id="accordion1" data-toggle="collapse" data-parent="#accordion1" href="#collapse1">
+              <!-- <td class="expand-button"></td>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td> -->
+            </tr>
+            <!-- COLLAPSIBLE -->
+            <!-- <tr class="hide-table-padding">
+              <td colspan="6">
+                <div id="collapse1" class="collapse in p-3">
+                  <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-4">Overseas Medical Expenses</div>
+                    <div class="col">value 1</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-4">Delayed Trip</div>
+                    <div class="col">value 1</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-4">Delayed Baggage</div>
+                    <div class="col">value 1</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-4">Loss or Damage to Belongings</div>
+                    <div class="col">value 1</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-4">Cancelled Trip</div>
+                    <div class="col">value 1</div>
+                  </div>
+                </div>
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+
+      <div class="container" data-aos="fade-up">
+
+        <div class="row  justify-content-center">
+          <div class="col-lg-6">
+            <h3>DTB</h3>
+          </div>
+        </div>
+
+        <div class="row footer-newsletter justify-content-center">
+            Thank you for visiting our website! We hope you found our insurance products useful.
+           </div>
+        </div>
+
+        <div class="social-links">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>DTB</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bocor-bootstrap-template-nice-animation/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <style>
+    tr.hide-table-padding td {
+      padding: 0;
+    }
+
+    .accordion-toggle .expand-button:after {
+      content: '-';
+    }
+
+    .accordion-toggle.collapsed .expand-button:after {
+      content: '+';
+    }
+  </style>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      getAll()
+    })
+
+    function populateTable(objArr) {
+      var tbodyNode = document.getElementById('tbody');
+      tbodyNode.innerHTML = "";
+      var counter = 0;
+
+      for (var item of objArr) {
+        counter += 1;
+        var trNode = document.createElement('tr');
+        trNode.className = "accordion-toggle collapsed";
+        trNode.setAttribute('id', `accordion${counter}`);
+        trNode.setAttribute('data-toggle', "collapse");
+        trNode.setAttribute('data-parent', `#accordion${counter}`);
+        trNode.setAttribute('href', `#collapse${counter}`)
+        //expand button
+        var expandBtnNode = document.createElement('td');
+        expandBtnNode.className = "expand-button";
+        trNode.appendChild(expandBtnNode);
+        // country
+        var countryNode = document.createElement('td')
+        countryNode.appendChild(document.createTextNode(item["Country"]))
+        trNode.appendChild(countryNode);
+        //company
+        var companyNode = document.createElement('td')
+        companyNode.appendChild(document.createTextNode(item["Insurance Company"]));
+        trNode.appendChild(companyNode);
+        //name
+        var nameNode = document.createElement('td')
+        nameNode.appendChild(document.createTextNode(item['Policy Name']))
+        trNode.appendChild(nameNode);
+        // cost
+        var costNode = document.createElement('td')
+        costNode.appendChild(document.createTextNode(item["Cost"]))
+        trNode.appendChild(costNode);
+        //add to cart
+        var addToCartBtn = document.createElement('button')
+        addToCartBtn.setAttribute("type", "button");
+        addToCartBtn.className = "btn btn-primary mt-2"
+        addToCartBtn.appendChild(document.createTextNode("Purchase"))
+        trNode.appendChild(addToCartBtn);
+        tbodyNode.appendChild(trNode);
+
+        // add collapsible segment
+        var collapsibleTr = document.createElement('tr')
+        collapsibleTr.className = 'hide-table-padding'
+        var tdNode = document.createElement('td')
+        tdNode.setAttribute("colspan", "6")
+        var collapseDiv = document.createElement('div')
+        collapseDiv.setAttribute("id", `collapse${counter}`)
+        collapseDiv.className = "collapse in p-3"
+        //overseas medical expenses
+        var omeNode = document.createElement("div");
+        omeNode.className = "row"
+          // empty div
+        var emptyDiv = document.createElement("div")
+        emptyDiv.className = "col-3"
+        omeNode.appendChild(emptyDiv)
+          // key: OME
+        var omeDiv = document.createElement("div")
+        omeDiv.className = "col-4"
+        omeDiv.appendChild(document.createTextNode("Overseas Medical Expenses"))
+        omeNode.appendChild(omeDiv)
+          // value: $price
+        var priceDiv = document.createElement("div")
+        priceDiv.className = "col"
+        priceDiv.appendChild(document.createTextNode(item['Properties']["Overseas Medical Expenses"]))
+        omeNode.appendChild(priceDiv)
+
+        collapseDiv.appendChild(omeNode);
+
+        // delayed trip
+        var dtNode = document.createElement("div");
+        dtNode.className = "row"
+          // empty div
+        var emptyDiv = document.createElement("div")
+        emptyDiv.className = "col-3"
+        dtNode.appendChild(emptyDiv)
+          // key: OME
+        var omeDiv = document.createElement("div")
+        omeDiv.className = "col-4"
+        omeDiv.appendChild(document.createTextNode("Delayed Trip"))
+        dtNode.appendChild(omeDiv)
+          // value: $price
+        var priceDiv = document.createElement("div")
+        priceDiv.className = "col"
+        priceDiv.appendChild(document.createTextNode(item['Properties']["Delayed Trip"]))
+        dtNode.appendChild(priceDiv)
+
+        collapseDiv.appendChild(dtNode);
+
+        // delayed baggage
+        var dbNode = document.createElement("div");
+        dbNode.className = "row"
+          // empty div
+        var emptyDiv = document.createElement("div")
+        emptyDiv.className = "col-3"
+        dbNode.appendChild(emptyDiv)
+          // key: OME
+        var omeDiv = document.createElement("div")
+        omeDiv.className = "col-4"
+        omeDiv.appendChild(document.createTextNode("Delayed Baggage"))
+        dbNode.appendChild(omeDiv)
+          // value: $price
+        var priceDiv = document.createElement("div")
+        priceDiv.className = "col"
+        priceDiv.appendChild(document.createTextNode(item['Properties']["Delayed Baggage"]))
+        dbNode.appendChild(priceDiv)
+
+        collapseDiv.appendChild(dbNode);
+
+        // loss or damage
+        var lodNode = document.createElement("div");
+        lodNode.className = "row"
+          // empty div
+        var emptyDiv = document.createElement("div")
+        emptyDiv.className = "col-3"
+        lodNode.appendChild(emptyDiv)
+          // key: OME
+        var omeDiv = document.createElement("div")
+        omeDiv.className = "col-4"
+        omeDiv.appendChild(document.createTextNode("Loss or Damage to Belongings"))
+        lodNode.appendChild(omeDiv)
+          // value: $price
+        var priceDiv = document.createElement("div")
+        priceDiv.className = "col"
+        priceDiv.appendChild(document.createTextNode(item['Properties']["Loss or Damage to Belongings"]))
+        lodNode.appendChild(priceDiv)
+
+        collapseDiv.appendChild(lodNode);
+
+        // cancelled trip
+        var ctNode = document.createElement("div");
+        ctNode.className = "row"
+          // empty div
+        var emptyDiv = document.createElement("div")
+        emptyDiv.className = "col-3"
+        ctNode.appendChild(emptyDiv)
+          // key: OME
+        var omeDiv = document.createElement("div")
+        omeDiv.className = "col-4"
+        omeDiv.appendChild(document.createTextNode("Cancelled Trip"))
+        ctNode.appendChild(omeDiv)
+          // value: $price
+        var priceDiv = document.createElement("div")
+        priceDiv.className = "col"
+        priceDiv.appendChild(document.createTextNode(item['Properties']["Cancelled Trip"]))
+        ctNode.appendChild(priceDiv)
+
+        collapseDiv.appendChild(ctNode);
+
+        tdNode.appendChild(collapseDiv)
+
+        collapsibleTr.appendChild(tdNode)
+
+        tbodyNode.appendChild(collapsibleTr)
+      }
+    }
+    
+    function getCountrySelected(country) {
+      var arrItems = [];
+      $.getJSON("assets/data_travelInsurance.json", function (data) {
+        var records = data[country];
+        Object.keys(records).forEach(function(key) {
+          arrItems.push(records[key])
+        })
+      })
+      console.log(arrItems)
+      populateTable(arrItems)
+    }
+    
+    function getAll() {
+      $.getJSON("assets/data_travelInsurance.json", function (data) {
+        // get dropdown values
+        var dropdownNode = document.getElementById("dropdown");
+        var countries = [];
+        Object.keys(data).forEach(function (key){
+          countries.push(key)
+        })
+        for(var country of countries) {
+          var aNode = document.createElement("a")
+          aNode.className = "dropdown-item"
+          aNode.setAttribute("id", country)
+          aNode.setAttribute("href", "#")
+          aNode.setAttribute("onclick", "getCountrySelected(this.id)")
+          aNode.appendChild(document.createTextNode(country))
+          dropdownNode.appendChild(aNode)
+        }
+      
+        var arrItems = [];
+
+        $.each(data, function (index, value) {
+          Object.keys(value).forEach(function (key) {
+            value[key]["Country"] = index;
+            arrItems.push(value[key])
+          })
+        });
+
+        console.log(arrItems)
+        populateTable(arrItems)
+      });
+    };
+  </script>
+</body>
+
+</html>
