@@ -221,6 +221,143 @@
       // init user credentials
       // document.getElementById("userID").value = getUserID();
       // document.getElementById("PIN").value = getPIN();
+      $("#LSend").click(function (event) {
+            (function() {
+              console.log('Send 2 is clicked!')
+
+                // set service header values
+                var serviceName = "applyForLoan";
+                var userID = document.getElementById("LuserID").value;
+                // setUserID(userID);
+                var PIN = document.getElementById("LPIN").value;
+                var OTP = document.getElementById("LOTP").value;
+                // setPIN(PIN);
+                
+                // get and validate form values
+                var productID = document.getElementById("productID").value;
+                if (productID === ""){
+                    showErrorModalLoan("Product ID cannot be blank.");
+                    return;  
+                }
+                var loanPurpose = document.getElementById("loanPurpose").value;
+                if (loanPurpose === ""){
+                    showErrorModalLoan("Loan Purpose cannot be blank.");
+                    return;  
+                }
+                var loanAmount = document.getElementById("loanAmount").value;
+                if (loanAmount === ""){
+                    showErrorModalLoan("Loan Amount cannot be blank.");
+                    return;  
+                }
+                var numberOfMonths = document.getElementById("numberOfMonths").value;
+                if (numberOfMonths === ""){
+                    showErrorModalLoan("Number of Months cannot be blank.");
+                    return;  
+                }
+                var assetValue = document.getElementById("assetValue").value;
+                if (assetValue === ""){
+                    showErrorModalLoan("Asset Value cannot be blank.");
+                    return;  
+                }
+                var title = 'amey'
+                // document.getElementById("title").value;
+                if (title === ""){
+                    showErrorModalLoan("Title cannot be blank.");
+                    return;  
+                }
+                var currency = document.getElementById("currency").value;
+                if (currency === ""){
+                    showErrorModalLoan("Currency cannot be blank.");
+                    return;  
+                }
+                var settlementAccount = document.getElementById("settlementAccount").value;
+                if (settlementAccount === ""){
+                    showErrorModalLoan("Settlement Account cannot be blank.");
+                    return;  
+                }
+                
+                // disable Send button
+                // document.getElementById("Send").disabled = true;
+
+                // set request parameters
+            
+                var headerObj = {
+                    Header: {
+                        serviceName: serviceName,
+                        userID: userID,
+                        PIN: PIN,
+                        OTP: OTP
+                    }
+                };
+                var contentObj = {
+                    Content: {
+                        productID: productID,
+                        loanPurpose: loanPurpose,
+                        loanAmount: loanAmount,
+                        numberOfMonths: numberOfMonths,
+                        assetValue: assetValue,
+                        title: title,
+                        currency: currency,
+                        settlementAccount: settlementAccount
+                    }
+                };
+                var header = JSON.stringify(headerObj);
+                var content = JSON.stringify(contentObj);
+                console.log(header);
+
+                // setup http request
+                var xmlHttp = new XMLHttpRequest();
+                if (xmlHttp === null){
+                    alert("Browser does not support HTTP request.");
+                    return;
+                }
+                xmlHttp.open("POST", getApiURL()+"?Header="+header+"&Content="+content, true);
+                xmlHttp.timeout = 5000;
+
+                // setup http event handlers
+                xmlHttp.onreadystatechange = function() {
+                    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                        responseObj = JSON.parse(xmlHttp.responseText);
+                        console.log(responseObj);
+                        serviceRespHeader = responseObj.Content.ServiceResponse.ServiceRespHeader;
+                        globalErrorID = serviceRespHeader.GlobalErrorID;
+                        console.log(globalErrorID)
+                        if (globalErrorID === "010041"){
+                            console.log('Confirmed!');
+                            showLoanConfirmation();
+                            return;
+                        }
+                        else if (globalErrorID !== "010000"){
+                            showErrorModalLoan(serviceRespHeader.ErrorDetails);
+                            return;
+                        }
+                        else{
+                          console.log('Confirmed!');
+                          showLoanConfirmation();
+                        }
+                        
+                        // get data
+                        accountID = responseObj.Content.ServiceResponse.accountID._content_;
+                        
+                        // display data
+                        document.getElementById("accountID").innerHTML = accountID;
+
+                        // enable Send button
+                        // document.getElementById("Send").disabled = false;
+                    }
+                };
+                xmlHttp.ontimeout = function (e) {
+                    showErrorModalLoan("Timeout invoking API.");
+                    return;
+                };					
+
+                // send the http request
+                xmlHttp.send();
+
+            })();
+        });
+
+ 
       
 
       /*----------------------------------------
@@ -228,6 +365,7 @@
        */
       $(".Send").click(function (event) {
           (function() {
+            console.log('Send 1 is clicked!')
 
               // set service header values
               var serviceName = "billPayment";
@@ -315,7 +453,7 @@
                       // document.getElementById("balanceAfter").value = addCommas(balanceAfter);
                       
                       // enable Send button
-                      document.getElementById("Send").disabled = false;
+                      // document.getElementById("Send").disabled = false;
                   }
               };
               xmlHttp.ontimeout = function (e) {
@@ -351,6 +489,14 @@
           })();
       });
   });
+  function showLoanConfirmation(){
+    console.log('Opening modal');
+    $("#LoanConfirmationModal").modal('show');
+  }
+  function showErrorModalLoan(error){
+    document.getElementById("LoanError").innerHTML = error;
+  }
+
   function showErrorModal(error){
     document.getElementById("error").innerHTML = error;
   }
@@ -368,18 +514,159 @@
 
 </script>
 
-
-
-
-
         <!-- End tBank API for direct debit -->
-        <h2>1. Payment via Installments</h2>
+        <h2 style="color:#937851">2. Payment via tBank Loans!</h2>
         <br>
-        <h4>Get a loan from tBank to pay your insurance!</h4>
-        <a href="Loans.html" class="btn btn-primary btn-lg mb30">Browse Loans tBank Offers</a>
-        <br><br><br><br>
+        <h5>Interested? Apply for a loan now!</h5>
+        <!-- <h4>Get a loan from tBank to pay your insurance!</h4> -->
+        <!-- <a href="Loans.html" class="btn btn-primary btn-lg mb30">Calculate attractive offers!</a> -->
+        <!-- <br><br><br><br> -->
+        <div class="container">
+          <div class="col-md-6">
+              <form class="form-horizontal well" style="padding-bottom: 0px;">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">User ID</span>
+                  </div>
+                  <input id="LuserID" type="text" class="form-control">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Password</span>
+                  </div>
+                  <input id="LPIN" type="password" class="form-control">
+                </div>
+                <input id="productID" type="text" class="form-control" value="205" hidden/>
+                <input id="LOTP" type="text" class="form-control" placeholder="10" value="999999" hidden>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Account</span>
+                  </div>
+                  <input id="settlementAccount" type="text" class="form-control" placeholder=" eg. 6890">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Loan Amount</span>
+                  </div>
+                  <input id="loanAmount" type="text" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Number of Months</span>
+                  </div>
+                  <input id="numberOfMonths" type="text" class="form-control">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Loan Purpose</span>
+                  </div>
+                  <input id="loanPurpose" type="text" class="form-control">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Asset Value</span>
+                  </div>
+                  <input id="assetValue" type="text" class="form-control">
+                </div>
+                <input id="currency" value="SGD" type="text" class="form-control" hidden>
+                
+                <!-- <div id="otpModal" class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">OTP</span>
+                  </div>
+                  <input id="OTP" type="text" class="form-control" placeholder="10">
+                </div> -->                
+                <div style="color: red;" id="LoanError"></div>
+                <div class="form-group">
+                  <button id="LSend" type="button" class="btn btn-primary">Apply for a loan!</button>
+                  <button type="Lreset" class="btn btn-default">Clear</button>
+                </div>
+
+                <!-- loans api  -->
+
+
+
+
+
+
+
+                <!-- modals and functions -->
+                <div id="otpModal" class="modal" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">2FA Authorisation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Please enter the OTP below</p>
+                        <p>
+                          <input id="OTP" type="text" class="form-control" placeholder="10">
+                        </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary Send confirmation">Verify</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="confirmationModal" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div class="icon-box">
+                          <i class="material-icons">&#xE876;</i>
+                        </div>				
+                        <h4>Awesome!</h4>	
+                      </div>
+                      <div class="modal-body">
+                        <p class="text-center">Your payment has been confirmed!</p>
+                        <p class="text-center"> Transaction ID is <label id="transactionID"></label> </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+                
+                <div id="LoanConfirmationModal" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div class="icon-box">
+                          <i class="material-icons">&#xE876;</i>
+                        </div>				
+                        <h4>Awesome!</h4>	
+                      </div>
+                      <div class="modal-body">
+                        <p class="text-center">Your have successfully applied for a loan</p>
+                        <p class="text-center"> Loan Account ID is <label id="accountID"></label> </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+                
+              </form>
+              
+              
+          </div>
+      </div>
+        
+        
+        
+        
+        
+        
+        
         <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+          <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
             <h2>2. Pay using Credit Card</h2>
             <br>    
 				    <h2>Personal details</h2>
