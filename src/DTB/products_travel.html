@@ -95,17 +95,26 @@
     <section class="inner-page" style="padding-top: 20px;">
       <div class="container">
 
-        <!-- dropdown -->
-        <div class="dropdown text-right mb-4">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <!-- dropdown and search button -->
+        <div class="dropdown text-center mb-4">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select Country
           </button>
-          <div id="dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div id="dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="z-index: 10;">
             
           </div>
         </div>
 
-        <table class="table table-hover">
+        <div id="warning">
+          <br/>
+          <h3>Please select a destination country.</h3>
+        </div>
+
+        <div id="br">
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        </div>
+
+        <table class="table table-hover" id="table" style="visibility: hidden;">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -117,14 +126,14 @@
             </tr>
           </thead>
           <tbody id="tbody">
-            <tr class="accordion-toggle collapsed" id="accordion1" data-toggle="collapse" data-parent="#accordion1" href="#collapse1">
-              <!-- <td class="expand-button"></td>
+            <!-- <tr class="accordion-toggle collapsed" id="accordion1" data-toggle="collapse" data-parent="#accordion1" href="#collapse1">
+              <td class="expand-button"></td>
               <td>test</td>
               <td>test</td>
               <td>test</td>
               <td>test</td>
-              <td>test</td> -->
-            </tr>
+              <td>test</td>
+            </tr> -->
             <!-- COLLAPSIBLE -->
             <!-- <tr class="hide-table-padding">
               <td colspan="6">
@@ -165,7 +174,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
+  <footer id="footer" style="position: relative;">
 
     <div class="footer-top">
 
@@ -238,15 +247,69 @@
 
   <script>
     $(document).ready(function () {
-      getAll()
+      $.getJSON("assets/data_travelInsurance.json", function (data) {
+        // get dropdown values
+        var dropdownNode = document.getElementById("dropdown");
+        var countries = [];
+        Object.keys(data).forEach(function (key){
+          countries.push(key)
+        })
+        for(var country of countries) {
+          var aNode = document.createElement("a")
+          aNode.className = "dropdown-item"
+          aNode.setAttribute("id", country)
+          aNode.setAttribute("href", "#")
+          aNode.setAttribute("onclick", "getCountrySelected(this.id)")
+          aNode.setAttribute("style", "style='z-index: 10;'")
+          aNode.appendChild(document.createTextNode(country))
+          dropdownNode.appendChild(aNode)
+        }
+      })
     })
+    
+    function getCountrySelected(country) {
+      //remove warning
+      var warningNode = document.getElementById("warning")
+      warningNode.innerHTML = ""
 
-    function populateTable(objArr) {
+      //update dropdown placeholder
+      var dropdownNode = document.getElementById("dropdownMenuButton");
+      dropdownNode.innerHTML = country
+
+      // show table and remove br
+      var brNode = document.getElementById("br")
+      brNode.innerHTML = ""
+      var tableNode = document.getElementById("table")
+      tableNode.setAttribute("style", "visibility:visible;")
+
+      // var array = [{name: "john", age: 12}, {name: "john", age: 12}, {name: "john", age: 12}];
+      // console.log(typeof array)
+      // for (i of array) {
+      //   console.log(i)
+      // }
+
+      // get country json records
+      var arrItems = [];
+      $.getJSON("assets/data_travelInsurance.json", function (data) {
+        var records = data[country];
+        Object.keys(records).forEach(function(key) {
+          records[key]["Country"] = country
+          arrItems.push(records[key])
+        })
+      })
+      console.log(arrItems)
+      
+      //populateTable
       var tbodyNode = document.getElementById('tbody');
       tbodyNode.innerHTML = "";
       var counter = 0;
 
-      for (var item of objArr) {
+      // for(item of arrItems) {
+      //   console.log("hii")
+      // }
+
+      for(item of arrItems) {
+        console.log(item)
         counter += 1;
         var trNode = document.createElement('tr');
         trNode.className = "accordion-toggle collapsed";
@@ -396,51 +459,8 @@
 
         tbodyNode.appendChild(collapsibleTr)
       }
+      console.log(tbodyNode)
     }
-    
-    function getCountrySelected(country) {
-      var arrItems = [];
-      $.getJSON("assets/data_travelInsurance.json", function (data) {
-        var records = data[country];
-        Object.keys(records).forEach(function(key) {
-          arrItems.push(records[key])
-        })
-      })
-      console.log(arrItems)
-      populateTable(arrItems)
-    }
-    
-    function getAll() {
-      $.getJSON("assets/data_travelInsurance.json", function (data) {
-        // get dropdown values
-        var dropdownNode = document.getElementById("dropdown");
-        var countries = [];
-        Object.keys(data).forEach(function (key){
-          countries.push(key)
-        })
-        for(var country of countries) {
-          var aNode = document.createElement("a")
-          aNode.className = "dropdown-item"
-          aNode.setAttribute("id", country)
-          aNode.setAttribute("href", "#")
-          aNode.setAttribute("onclick", "getCountrySelected(this.id)")
-          aNode.appendChild(document.createTextNode(country))
-          dropdownNode.appendChild(aNode)
-        }
-      
-        var arrItems = [];
-
-        $.each(data, function (index, value) {
-          Object.keys(value).forEach(function (key) {
-            value[key]["Country"] = index;
-            arrItems.push(value[key])
-          })
-        });
-
-        console.log(arrItems)
-        populateTable(arrItems)
-      });
-    };
   </script>
 </body>
 
