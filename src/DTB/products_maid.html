@@ -194,7 +194,7 @@
           arrItems.push(value);
         });
         var tbodyNode = document.getElementById('tbody');
-        for (var item of arrItems) {
+        for (item of arrItems) {
           var trNode = document.createElement('tr')
           // name
           var nameTdNode = document.createElement('td')
@@ -216,6 +216,7 @@
           var addToCartBtn = document.createElement('button')
           addToCartBtn.setAttribute("type", "button");
           addToCartBtn.className = "btn btn-primary mt-2"
+          addToCartBtn.setAttribute("onclick", `sessionStorage.setItem('item', ${item.Name})`);
           addToCartBtn.appendChild(document.createTextNode("Purchase"))
           trNode.appendChild(addToCartBtn);
           tbodyNode.appendChild(trNode);
