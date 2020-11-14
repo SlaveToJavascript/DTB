@@ -121,7 +121,7 @@
               <th scope="col">Country</th>
               <th scope="col">Company</th>
               <th scope="col">Policy Name</th>
-              <th scope="col">Cost</th>
+              <th scope="col">Cost (S$)</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -298,7 +298,43 @@
         // console.log(records);
         Object.keys(records).forEach(function(key) {
           records[key]["Country"] = country;
-          addProduct(records[key],key);
+          // addProduct(records[key],key);
+          var item = records[key];
+          var counter = key
+
+          var tbodyNode = document.getElementById('tbody');
+          var trNode = document.createElement('tr');
+          //expand button
+          var expandBtnNode = document.createElement('td');
+          // expandBtnNode.className = "expand-button";
+          trNode.appendChild(expandBtnNode);
+          // country
+          var countryNode = document.createElement('td')
+          countryNode.appendChild(document.createTextNode(item["Country"]))
+          trNode.appendChild(countryNode);
+          //company
+          var companyNode = document.createElement('td')
+          companyNode.appendChild(document.createTextNode(item["Insurance Company"]));
+          trNode.appendChild(companyNode);
+          //name
+          var nameNode = document.createElement('td')
+          nameNode.appendChild(document.createTextNode(item['Policy Name']))
+          trNode.appendChild(nameNode);
+          // cost
+          var costNode = document.createElement('td')
+          costNode.appendChild(document.createTextNode(item["Cost"]))
+          trNode.appendChild(costNode);
+          //add to cart
+          var addToCartBtn = document.createElement('button')
+          addToCartBtn.setAttribute("type", "button");
+          addToCartBtn.setAttribute("onclick",
+            `console.log(item);
+            `
+          );
+          addToCartBtn.className = "btn btn-primary mt-2"
+          addToCartBtn.appendChild(document.createTextNode("Purchase"))
+          trNode.appendChild(addToCartBtn);
+          tbodyNode.appendChild(trNode);
         })
       })
     }
@@ -308,11 +344,6 @@
     function addProduct(item,counter){
       var tbodyNode = document.getElementById('tbody');
       var trNode = document.createElement('tr');
-      // trNode.className = "accordion-toggle collapsed";
-      // trNode.setAttribute('id', `accordion${counter}`);
-      // trNode.setAttribute('data-toggle', "collapse");
-      // trNode.setAttribute('data-parent', `#accordion${counter}`);
-      // trNode.setAttribute('href', `#collapse${counter}`)
       //expand button
       var expandBtnNode = document.createElement('td');
       // expandBtnNode.className = "expand-button";
@@ -336,7 +367,10 @@
       //add to cart
       var addToCartBtn = document.createElement('button')
       addToCartBtn.setAttribute("type", "button");
-      addToCartBtn.setAttribute("onclick", `location.href='cart.html';sessionStorage.setItem('item', ${item});`);
+      addToCartBtn.setAttribute("onclick",
+        `console.log(item);
+        `
+      );
       addToCartBtn.className = "btn btn-primary mt-2"
       addToCartBtn.appendChild(document.createTextNode("Purchase"))
       trNode.appendChild(addToCartBtn);

@@ -138,7 +138,7 @@
 
       <div class="container" data-aos="fade-up">
 
-        <div class="row  justify-content-center">
+        <div class="row justify-content-center">
           <div class="col-lg-6">
             <h3>DTB</h3>
           </div>
@@ -197,7 +197,7 @@
           arrItems.push(value);
         });
         var tbodyNode = document.getElementById('tbody');
-        for (var item of arrItems) {
+        for (item of arrItems) {
           var trNode = document.createElement('tr')
           // name
           var nameTdNode = document.createElement('td')
@@ -232,6 +232,13 @@
           addToCartBtn.setAttribute("type", "button");
           addToCartBtn.className = "btn btn-primary mt-2"
           addToCartBtn.appendChild(document.createTextNode("Purchase"))
+          addToCartBtn.setAttribute("onclick", `
+            console.log(item)
+            sessionStorage.setItem('item', item['Name']);
+            item['Cost'] = parseFloat(item['Cost'].replace('S$', ''))
+            sessionStorage.setItem('price', item['Cost']);
+            
+          `)
           trNode.appendChild(addToCartBtn);
           tbodyNode.appendChild(trNode);
         }
