@@ -99,20 +99,35 @@
         <h1> There are 2 payment options that you can use to purchase your insurance!</h1>
         <!--  tBank API for direct debit -->
         <br/>
+        <label id="Title"></label>
+
         <h2 class="page-header" style="color:#937851">1. Payment via tBank</h2>
-<div class="container">
+
+        <div class="col-md-6">
+          <form class="form-horizontal well" style="padding-bottom: 0px;">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+              <span class="input-group-text">User ID</span>
+              </div>
+              <input id="userID" type="text" class="form-control">
+              <div class="input-group-prepend">
+              <span class="input-group-text">Password</span>
+              </div>
+              <input id="PIN" type="password" class="form-control">
+            </div>
+            <div class="form-group">
+              <button id="Login" type="button" class="btn btn-primary">Login</button>
+              <button type="reset" class="btn btn-default">Clear</button>
+            </div> 
+          </form>
+          
+          
+      </div>
+
+        
+    <div class="container">
     <div class="col-md-6">
         <form class="form-horizontal well" style="padding-bottom: 0px;">
-          <div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text">User ID</span>
-					  </div>
-					  <input id="userID" type="text" class="form-control">
-					  <div class="input-group-prepend">
-						<span class="input-group-text">Password</span>
-					  </div>
-					  <input id="PIN" type="password" class="form-control">
-          </div>
           <div class="input-group mb-3">
 					  <div class="input-group-prepend">
 						<span class="input-group-text">Account FROM</span>
@@ -143,21 +158,94 @@
         
         
     </div>
-</div>
+    </div>
 
 <!-- javascript libraries
 ======================================== -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script type="text/javascript">
-  $(document).ready(function () {
+$(document).ready(function(){
+    $("#Login").click(function (event) {
+      (function() {
+        console.log('Request initiated!')
+
+          // set service header values
+          var serviceName = "loginCustomer";
+          var userID = document.getElementById("userID").value;
+          var PIN = document.getElementById("PIN").value;
+          var OTP = '999999';
+          
+          // set request parameters
+          var headerObj = {
+              Header: {
+                  serviceName: serviceName,
+                  userID: userID,
+                  PIN: PIN,
+                  OTP: OTP
+              }
+          };
+          var header = JSON.stringify(headerObj);
+
+          // setup http request
+          var xmlHttp = new XMLHttpRequest();
+          if (xmlHttp === null){
+              alert("Browser does not support HTTP request.");
+              return;
+          }
+          xmlHttp.open("POST", getApiURL()+"?Header="+header, true);
+          xmlHttp.timeout = 5000;
+
+          // setup http event handlers
+          xmlHttp.onreadystatechange = function() {
+              if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                  responseObj = JSON.parse(xmlHttp.responseText);
+                  console.log(responseObj);
+                  serviceRespHeader = responseObj.Content.ServiceResponse.ServiceRespHeader;
+                  globalErrorID = serviceRespHeader.GlobalErrorID;
+                  if (globalErrorID !== "010000"){
+                      showErrorModalLoanRequest(serviceRespHeader.ErrorDetails);
+                  }
+                  else{
+                    // get data
+                    alert("You have been logged in!")
+                    ServiceResponse = responseObj.Content.ServiceResponse;
+                    LoginOTPAuthenticateResponse = ServiceResponse["Login_OTP_Authenticate-Response"];
+                    BankID = LoginOTPAuthenticateResponse.BankID;
+                    CustomerID = LoginOTPAuthenticateResponse.CustomerID;
+
+                    // display data
+                    //document.getElementById("BankID").value = "*" + globalErrorID + "*";
+                    sessionStorage.setItem("BankID", BankID);
+                    sessionStorage.setItem("CustomerID", CustomerID);
+                    sessionStorage.setItem("UserID", userID);
+                    sessionStorage.setItem("PIN", PIN);
+
+                    document.getElementById("Title").innerHTML = 'You are logged in as tBank user: ' + sessionStorage.getItem("UserID");
+                    // document.getElementById("BankID").value = BankID;
+                    // document.getElementById("CustomerID").value = CustomerID;
+                  }
+              }
+          };
+          xmlHttp.ontimeout = function (e) {
+              showErrorModal("Timeout invoking API.");
+              return;
+          };					
+          // send the http request
+          xmlHttp.send();
+
+      })();
+  });
+    
+
     $("#RequestLoan").click(function (event) {
       (function() {
         console.log('Request initiated!')
+
           // set service header values
           var serviceName = "calculateLoanInstallment";
-          var userID = document.getElementById("LoanuserID").value;
-          var PIN = document.getElementById("LoanPIN").value;
+          var userID = sessionStorage.getItem("UserID");
+          var PIN = sessionStorage.getItem("PIN");
           var OTP = '999999';
           
           // get and validate form values
@@ -253,11 +341,9 @@
 
                 // set service header values
                 var serviceName = "applyForLoan";
-                var userID = document.getElementById("LuserID").value;
-                // setUserID(userID);
-                var PIN = document.getElementById("LPIN").value;
+                var userID = sessionStorage.getItem("UserID")
+                var PIN = sessionStorage.getItem("PIN");
                 var OTP = document.getElementById("LOTP").value;
-                // setPIN(PIN);
                 
                 // get and validate form values
                 var productID = document.getElementById("productID").value;
@@ -394,11 +480,9 @@
 
               // set service header values
               var serviceName = "billPayment";
-              var userID = document.getElementById("userID").value;
-              // setUserID(userID);
-              var PIN = document.getElementById("PIN").value;
+              var userID = sessionStorage.getItem("UserID")
+              var PIN = sessionStorage.getItem("PIN")
               var OTP = document.getElementById("OTP").value;
-              // setPIN(PIN);
               
               // get and validate form values
               var accountFrom = document.getElementById("accountFrom").value;
@@ -495,25 +579,6 @@
       /* ----------------------------------------
        * error model close button clicked
        */
-      $("#CloseError").click(function (event) {
-          (function() {
-              document.getElementById("Send").disabled = false;
-          })();
-      });
-
-      /* ----------------------------------------
-       * OTP model update button clicked
-       */
-      $("#UpdateOTP").click(function (event) {
-          (function() {
-              var OTP = document.getElementById("OTP").value;
-              setOTP(OTP, function() { // ensure OTP set before clicking Send
-                  document.getElementById("Send").disabled = false;
-                  document.getElementById("Send").click();
-              });
-          })();
-      });
-  });
   function showLoanModal(){
     console.log('Opening modal');
     $("#LoanRequestModal").modal('show');
@@ -524,6 +589,7 @@
     console.log('Opening modal');
     $("#LoanConfirmationModal").modal('show');
   }
+
   function showErrorModalLoan(error){
     document.getElementById("LoanError").innerHTML = error;
   }
@@ -542,11 +608,12 @@
   function showOTPModal(){
     $("#otpModal").modal('show');
   }
+
   $(".confirmation").click(function(){
     $("#otpModal").modal('hide');
     $("#confirmationModal").modal('show');
   });
-
+})
   
 </script>
 
@@ -558,16 +625,6 @@
         <h5> Calculate loan details now!</h5>
         <br/>
       <form>
-        <div class="col-12 input-group mb-3">
-          <div class="input-group-prepend">
-          <span class="input-group-text">User ID</span>
-          </div>
-          <input id="LoanuserID" type="text" class="form-control">
-          <div class="input-group-prepend">
-          <span class="input-group-text">Password</span>
-          </div>
-          <input id="LoanPIN" type="password" class="form-control">
-        </div>
         <input id="LoanproductID" type="text" class="form-control" value="201" hidden/>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -596,16 +653,6 @@
         <!-- <br><br><br><br> -->
         
               <form class="form-horizontal well" style="padding-bottom: 0px;">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">User ID</span>
-                  </div>
-                  <input id="LuserID" type="text" class="form-control">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Password</span>
-                  </div>
-                  <input id="LPIN" type="password" class="form-control">
-                </div>
                 <input id="productID" type="text" class="form-control" value="205" hidden/>
                 <input id="LOTP" type="text" class="form-control" placeholder="10" value="999999" hidden>
                 <div class="input-group mb-3">
