@@ -216,7 +216,12 @@
           var addToCartBtn = document.createElement('button')
           addToCartBtn.setAttribute("type", "button");
           addToCartBtn.className = "btn btn-primary mt-2"
-          addToCartBtn.setAttribute("onclick", `sessionStorage.setItem('item', ${item.Name})`);
+          addToCartBtn.setAttribute("onclick",
+            `sessionStorage.setItem('item', item['Name']);
+            item["Coverage"]["Yearly Premium"] = parseFloat(item["Coverage"]["Yearly Premium"].replace('$', ''));
+            sessionStorage.setItem('price', item["Coverage"]["Yearly Premium"]);
+            window.location.href='cart.html'`
+          );
           addToCartBtn.appendChild(document.createTextNode("Purchase"))
           trNode.appendChild(addToCartBtn);
           tbodyNode.appendChild(trNode);
