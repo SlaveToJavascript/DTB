@@ -121,7 +121,7 @@
               <th scope="col">Country</th>
               <th scope="col">Company</th>
               <th scope="col">Policy Name</th>
-              <th scope="col">Cost (S$)</th>
+              <th scope="col">Cost</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -211,7 +211,7 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bocor-bootstrap-template-nice-animation/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
       </div>
     </div>
   </footer><!-- End Footer -->
@@ -229,10 +229,6 @@
 
     .accordion-toggle.collapsed .expand-button:after {
       content: '+';
-    }
-
-    button {
-      z-index:99;
     }
   </style>
 
@@ -286,6 +282,11 @@
       var tableNode = document.getElementById("table")
       tableNode.setAttribute("style", "visibility:visible;")
 
+      // var array = [{name: "john", age: 12}, {name: "john", age: 12}, {name: "john", age: 12}];
+      // console.log(typeof array)
+      // for (i of array) {
+      //   console.log(i)
+      // }
       //populateTable
       var tbodyNode = document.getElementById('tbody');
       tbodyNode.innerHTML = "";
@@ -298,43 +299,7 @@
         // console.log(records);
         Object.keys(records).forEach(function(key) {
           records[key]["Country"] = country;
-          // addProduct(records[key],key);
-          var item = records[key];
-          var counter = key
-
-          var tbodyNode = document.getElementById('tbody');
-          var trNode = document.createElement('tr');
-          //expand button
-          var expandBtnNode = document.createElement('td');
-          // expandBtnNode.className = "expand-button";
-          trNode.appendChild(expandBtnNode);
-          // country
-          var countryNode = document.createElement('td')
-          countryNode.appendChild(document.createTextNode(item["Country"]))
-          trNode.appendChild(countryNode);
-          //company
-          var companyNode = document.createElement('td')
-          companyNode.appendChild(document.createTextNode(item["Insurance Company"]));
-          trNode.appendChild(companyNode);
-          //name
-          var nameNode = document.createElement('td')
-          nameNode.appendChild(document.createTextNode(item['Policy Name']))
-          trNode.appendChild(nameNode);
-          // cost
-          var costNode = document.createElement('td')
-          costNode.appendChild(document.createTextNode(item["Cost"]))
-          trNode.appendChild(costNode);
-          //add to cart
-          var addToCartBtn = document.createElement('button')
-          addToCartBtn.setAttribute("type", "button");
-          addToCartBtn.setAttribute("onclick",
-            `console.log(item);
-            `
-          );
-          addToCartBtn.className = "btn btn-primary mt-2"
-          addToCartBtn.appendChild(document.createTextNode("Purchase"))
-          trNode.appendChild(addToCartBtn);
-          tbodyNode.appendChild(trNode);
+          addProduct(records[key],key);
         })
       })
     }
@@ -343,10 +308,16 @@
     
     function addProduct(item,counter){
       var tbodyNode = document.getElementById('tbody');
+      console.log(counter);
       var trNode = document.createElement('tr');
+      trNode.className = "accordion-toggle collapsed";
+      trNode.setAttribute('id', `accordion${counter}`);
+      trNode.setAttribute('data-toggle', "collapse");
+      trNode.setAttribute('data-parent', `#accordion${counter}`);
+      trNode.setAttribute('href', `#collapse${counter}`)
       //expand button
       var expandBtnNode = document.createElement('td');
-      // expandBtnNode.className = "expand-button";
+      expandBtnNode.className = "expand-button";
       trNode.appendChild(expandBtnNode);
       // country
       var countryNode = document.createElement('td')
@@ -367,125 +338,121 @@
       //add to cart
       var addToCartBtn = document.createElement('button')
       addToCartBtn.setAttribute("type", "button");
-      addToCartBtn.setAttribute("onclick",
-        `console.log(item);
-        `
-      );
       addToCartBtn.className = "btn btn-primary mt-2"
       addToCartBtn.appendChild(document.createTextNode("Purchase"))
       trNode.appendChild(addToCartBtn);
       tbodyNode.appendChild(trNode);
 
-      // // add collapsible segment
-      // var collapsibleTr = document.createElement('tr')
-      // collapsibleTr.className = 'hide-table-padding'
-      // var tdNode = document.createElement('td')
-      // tdNode.setAttribute("colspan", "6")
-      // var collapseDiv = document.createElement('div')
-      // collapseDiv.setAttribute("id", `collapse${counter}`)
-      // collapseDiv.className = "collapse in p-3"
-      // //overseas medical expenses
-      // var omeNode = document.createElement("div");
-      // omeNode.className = "row"
-      //   // empty div
-      // var emptyDiv = document.createElement("div")
-      // emptyDiv.className = "col-3"
-      // omeNode.appendChild(emptyDiv)
-      //   // key: OME
-      // var omeDiv = document.createElement("div")
-      // omeDiv.className = "col-4"
-      // omeDiv.appendChild(document.createTextNode("Overseas Medical Expenses"))
-      // omeNode.appendChild(omeDiv)
-      //   // value: $price
-      // var priceDiv = document.createElement("div")
-      // priceDiv.className = "col-2"
-      // priceDiv.appendChild(document.createTextNode(item['Properties']["Overseas Medical Expenses"]))
-      // omeNode.appendChild(priceDiv)
+      // add collapsible segment
+      var collapsibleTr = document.createElement('tr')
+      collapsibleTr.className = 'hide-table-padding'
+      var tdNode = document.createElement('td')
+      tdNode.setAttribute("colspan", "6")
+      var collapseDiv = document.createElement('div')
+      collapseDiv.setAttribute("id", `collapse${counter}`)
+      collapseDiv.className = "collapse in p-3"
+      //overseas medical expenses
+      var omeNode = document.createElement("div");
+      omeNode.className = "row"
+        // empty div
+      var emptyDiv = document.createElement("div")
+      emptyDiv.className = "col-3"
+      omeNode.appendChild(emptyDiv)
+        // key: OME
+      var omeDiv = document.createElement("div")
+      omeDiv.className = "col-4"
+      omeDiv.appendChild(document.createTextNode("Overseas Medical Expenses"))
+      omeNode.appendChild(omeDiv)
+        // value: $price
+      var priceDiv = document.createElement("div")
+      priceDiv.className = "col"
+      priceDiv.appendChild(document.createTextNode(item['Properties']["Overseas Medical Expenses"]))
+      omeNode.appendChild(priceDiv)
 
-      // collapseDiv.appendChild(omeNode);
+      collapseDiv.appendChild(omeNode);
 
-      // // delayed trip
-      // var dtNode = document.createElement("div");
-      // dtNode.className = "row"
-      //   // empty div
-      // var emptyDiv = document.createElement("div")
-      // emptyDiv.className = "col-3"
-      // dtNode.appendChild(emptyDiv)
-      //   // key: OME
-      // var omeDiv = document.createElement("div")
-      // omeDiv.className = "col-4"
-      // omeDiv.appendChild(document.createTextNode("Delayed Trip"))
-      // dtNode.appendChild(omeDiv)
-      //   // value: $price
-      // var priceDiv = document.createElement("div")
-      // priceDiv.className = "col-2"
-      // priceDiv.appendChild(document.createTextNode(item['Properties']["Delayed Trip"]))
-      // dtNode.appendChild(priceDiv)
+      // delayed trip
+      var dtNode = document.createElement("div");
+      dtNode.className = "row"
+        // empty div
+      var emptyDiv = document.createElement("div")
+      emptyDiv.className = "col-3"
+      dtNode.appendChild(emptyDiv)
+        // key: OME
+      var omeDiv = document.createElement("div")
+      omeDiv.className = "col-4"
+      omeDiv.appendChild(document.createTextNode("Delayed Trip"))
+      dtNode.appendChild(omeDiv)
+        // value: $price
+      var priceDiv = document.createElement("div")
+      priceDiv.className = "col"
+      priceDiv.appendChild(document.createTextNode(item['Properties']["Delayed Trip"]))
+      dtNode.appendChild(priceDiv)
 
-      // collapseDiv.appendChild(dtNode);
+      collapseDiv.appendChild(dtNode);
 
-      // // delayed baggage
-      // var dbNode = document.createElement("div");
-      // dbNode.className = "row"
-      //   // empty div
-      // var emptyDiv = document.createElement("div")
-      // emptyDiv.className = "col-3"
-      // dbNode.appendChild(emptyDiv)
-      //   // key: OME
-      // var omeDiv = document.createElement("div")
-      // omeDiv.className = "col-4"
-      // omeDiv.appendChild(document.createTextNode("Delayed Baggage"))
-      // dbNode.appendChild(omeDiv)
-      //   // value: $price
-      // var priceDiv = document.createElement("div")
-      // priceDiv.className = "col-2"
-      // priceDiv.appendChild(document.createTextNode(item['Properties']["Delayed Baggage"]))
-      // dbNode.appendChild(priceDiv)
+      // delayed baggage
+      var dbNode = document.createElement("div");
+      dbNode.className = "row"
+        // empty div
+      var emptyDiv = document.createElement("div")
+      emptyDiv.className = "col-3"
+      dbNode.appendChild(emptyDiv)
+        // key: OME
+      var omeDiv = document.createElement("div")
+      omeDiv.className = "col-4"
+      omeDiv.appendChild(document.createTextNode("Delayed Baggage"))
+      dbNode.appendChild(omeDiv)
+        // value: $price
+      var priceDiv = document.createElement("div")
+      priceDiv.className = "col"
+      priceDiv.appendChild(document.createTextNode(item['Properties']["Delayed Baggage"]))
+      dbNode.appendChild(priceDiv)
 
-      // collapseDiv.appendChild(dbNode);
+      collapseDiv.appendChild(dbNode);
 
-      // // loss or damage
-      // var lodNode = document.createElement("div");
-      // lodNode.className = "row"
-      //   // empty div
-      // var emptyDiv = document.createElement("div")
-      // emptyDiv.className = "col-3"
-      // lodNode.appendChild(emptyDiv)
-      //   // key: OME
-      // var omeDiv = document.createElement("div")
-      // omeDiv.className = "col-4"
-      // omeDiv.appendChild(document.createTextNode("Loss or Damage to Belongings"))
-      // lodNode.appendChild(omeDiv)
-      //   // value: $price
-      // var priceDiv = document.createElement("div")
-      // priceDiv.className = "col-2"
-      // priceDiv.appendChild(document.createTextNode(item['Properties']["Loss or Damage to Belongings"]))
-      // lodNode.appendChild(priceDiv)
+      // loss or damage
+      var lodNode = document.createElement("div");
+      lodNode.className = "row"
+        // empty div
+      var emptyDiv = document.createElement("div")
+      emptyDiv.className = "col-3"
+      lodNode.appendChild(emptyDiv)
+        // key: OME
+      var omeDiv = document.createElement("div")
+      omeDiv.className = "col-4"
+      omeDiv.appendChild(document.createTextNode("Loss or Damage to Belongings"))
+      lodNode.appendChild(omeDiv)
+        // value: $price
+      var priceDiv = document.createElement("div")
+      priceDiv.className = "col"
+      priceDiv.appendChild(document.createTextNode(item['Properties']["Loss or Damage to Belongings"]))
+      lodNode.appendChild(priceDiv)
 
-      // collapseDiv.appendChild(lodNode);
+      collapseDiv.appendChild(lodNode);
 
-      // // cancelled trip
-      // var ctNode = document.createElement("div");
-      // ctNode.className = "row"
-      //   // empty div
-      // var emptyDiv = document.createElement("div")
-      // emptyDiv.className = "col-3"
-      // ctNode.appendChild(emptyDiv)
-      //   // key: OME
-      // var omeDiv = document.createElement("div")
-      // omeDiv.className = "col-4"
-      // omeDiv.appendChild(document.createTextNode("Cancelled Trip"))
-      // ctNode.appendChild(omeDiv)
-      //   // value: $price
-      // var priceDiv = document.createElement("div")
-      // priceDiv.className = "col-2"
-      // priceDiv.appendChild(document.createTextNode(item['Properties']["Cancelled Trip"]))
-      // ctNode.appendChild(priceDiv);
+      // cancelled trip
+      var ctNode = document.createElement("div");
+      ctNode.className = "row"
+        // empty div
+      var emptyDiv = document.createElement("div")
+      emptyDiv.className = "col-3"
+      ctNode.appendChild(emptyDiv)
+        // key: OME
+      var omeDiv = document.createElement("div")
+      omeDiv.className = "col-4"
+      omeDiv.appendChild(document.createTextNode("Cancelled Trip"))
+      ctNode.appendChild(omeDiv)
+        // value: $price
+      var priceDiv = document.createElement("div")
+      priceDiv.className = "col"
+      priceDiv.appendChild(document.createTextNode(item['Properties']["Cancelled Trip"]))
+      ctNode.appendChild(priceDiv);
 
-      // collapseDiv.appendChild(ctNode);
-      // tdNode.appendChild(collapseDiv);
-      // collapsibleTr.appendChild(tdNode);
-      // tbodyNode.appendChild(collapsibleTr);
+      collapseDiv.appendChild(ctNode);
+      tdNode.appendChild(collapseDiv);
+      collapsibleTr.appendChild(tdNode);
+      tbodyNode.appendChild(collapsibleTr);
     }
   </script>
 </body>
