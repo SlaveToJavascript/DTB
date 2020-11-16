@@ -53,22 +53,27 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul id = "navigation">
-          <li class="drop-down"><a href="index.html">Home</a>
+          <li class="drop-down"><a href="index.html" class = "active">Home</a>
             <ul>
               <li><a href="#about">About Us</a></li>
               <li><a href="#insurance">Insurance Products</a></li>
               <li><a href="#team">Team</a></li>
             </ul>
           </li>  
-          <li><a href= "products.html" >Insurance Product Listing</a></li>
-          <li><a href= "Loans.html" >Get a Loan</a></li>
+          <li class="drop-down"><a href="#" class = "active">Insurance Products</a>
+            <ul>
+              <li><a href="products_maid.html">Maid Insurance</a></li>
+              <li><a href="products_travel.html">Travel Insurance</a></li>
+              <li><a href="products_accident.html">Accident Insurance</a></li>
+            </ul>
+          </li>
           <li><a href = "cart.html"> Your Cart <i class="fa fa-shopping-cart"style="font-size:17px"></i> </a></li>
           
           <li class="get-started"><a href= login.html>Login</a></li>
           <li><a href = "login.html" class = "nav-link link-scroll" id = "logout">Logout</a></li>
         </ul>
       </nav>
-  <!-- nav-menu -->
+      <!-- nav-menu -->
 
     </div>
   </header><!-- End Header -->
@@ -92,10 +97,31 @@
           </ol>
         </div>
       </div>
-    </section><!-- End Breadcrumbs Section -->
+    </section>
+    <!-- End Breadcrumbs Section -->
 
+    <section class="inner-page">
+      
+      <div class="container">
+        <table class="table table-hover">
+          <h4>Your Cart</h4>
+          <thead>
+            <tr>
+              <th scope="col">Insurance Policy</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="name"></td>
+              <td id="price"></td>
+            </tr>
+          </tbody>
+        </table>
+    </section>
       <section class="inner-page">
         <div class="bs-example">
+          <h4 class="ml-3">Payment options</h4>
           <div class="accordion" id="accordionExample">
               <div class="card">
                   <div class="card-header" id="headingOne">
@@ -251,83 +277,7 @@
                           <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
                             <h2>2. Pay using Credit Card</h2>
                             <br>    
-                            <h2>Personal details</h2>
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <label class="input-group-text" for="Salutation">Salutation</label>
-                            </div>
-                            <select class="custom-select" id="Salutation">
-                            <option selected>Choose...</option>
-                            <option value="mr">Mr</option>
-                            <option value="mrs">Mrs</option>
-                            <option value="miss">Miss</option>
-                            <option value="ms">Ms</option>
-                            <option value="madam">Madam</option>
-                            </select>
-                          </div>
-                
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="firstname">First name</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="John" aria-label="First name" aria-describedby="basic-addon1">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="lastname">Last name</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Doe" aria-label="Last name" aria-describedby="basic-addon1">
-                          </div>
-                          
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="nric">NRIC/FIN</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="NRIC/FIN" aria-label="NRIC/FIN" aria-describedby="basic-addon1">
-                          </div>
-                          
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="nric">Email</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="johndoe@gmail.com" aria-label="Email" aria-describedby="basic-addon1">
-                          </div>
-                                  
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="phone">Phone</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon1">
-                          </div>
-                          
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="address">Address</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="123 Happy Street #12-123" aria-label="address" aria-describedby="basic-addon1">
-                          </div>
-                          
-                                    <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="address">Country</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Singapore" aria-label="country" aria-describedby="basic-addon1">
-                
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="address">State</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Singapore" aria-label="state" aria-describedby="basic-addon1">
-                
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="address">Zip</span>
-                            </div>
-                            <input type="text" class="form-control fix-rounded-right" placeholder="123456" aria-label="zip" required>
-                            <div class="invalid-feedback">
-                            Please choose a username.
-                            </div>
-                          </div><br>
-                          
-                          
-                          <hr>
-                          
+
                         <div class="input-group mb-3">
                           <h2>Payment</h2>
                             <div class="input-group mb-3">
@@ -367,7 +317,7 @@
                         
                         <hr>
                           
-                                    <a href="#" class="btn btn-primary btn-lg mb30">Continue to Checkout</a>
+                                    <a href="#" class="btn btn-primary btn-lg mb30">Pay</a>
                                 </div>
                 
                   
@@ -385,6 +335,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+  $("#transactionAmount").val(sessionStorage.getItem("price"));
+  $("#transactionAmount").prop("disabled", true);
+
+  $("#requestedAmount").val(sessionStorage.getItem("price"));
+  $("#requestedAmount").prop("disabled", true);
+
+  $("#loanAmount").val(sessionStorage.getItem("price"));
+  $("#loanAmount").prop("disabled", true);
+  
+
     $("#Login").click(function (event) {
       (function() {
         console.log('Request initiated!')
@@ -798,10 +758,16 @@ $(document).ready(function(){
 
           })();
       });
+      
+      var nameNode = document.getElementById('name');
+      nameNode.appendChild(document.createTextNode(sessionStorage.getItem("item")));
+      var priceNode = document.getElementById('price');
+      priceNode.appendChild(document.createTextNode("$" + parseFloat(sessionStorage.getItem("price")).toFixed(2)));
 
       /* ----------------------------------------
        * error model close button clicked
        */
+
   function showLoanModal(){
     console.log('Opening modal');
     $("#LoanRequestModal").modal('show');
