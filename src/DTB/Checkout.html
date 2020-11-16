@@ -95,70 +95,289 @@
     </section><!-- End Breadcrumbs Section -->
 
       <section class="inner-page">
-      <div class="container">
-        <h1> There are 2 payment options that you can use to purchase your insurance!</h1>
-        <!--  tBank API for direct debit -->
-        <br/>
-        <label id="Title"></label>
+        <div class="bs-example">
+          <div class="accordion" id="accordionExample">
+              <div class="card">
+                  <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                          <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"><i class="fa fa-plus"></i> Payment via tBank Services (Recommended)</button>									
+                      </h2>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <h3 class="mt-3 mb-3">Login to tBank (Mandatory)</h3>
+                        <label id="Title"></label>
+                        <!-- Authentication -->
+                        <div id="loginForm" class="col-md-6">
+                          <form class="form-horizontal well" style="padding-bottom: 0px;">
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                              <span class="input-group-text">User ID</span>
+                              </div>
+                              <input id="userID" type="text" class="form-control">
+                              <div class="input-group-prepend">
+                              <span class="input-group-text">Password</span>
+                              </div>
+                              <input id="PIN" type="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                              <button id="Login" type="button" class="btn btn-primary">Login</button>
+                              <button type="reset" class="btn btn-default">Clear</button>
+                            </div> 
+                          </form>   
+                      </div>
+                      <hr/>
 
-        <h2 class="page-header" style="color:#937851">1. Payment via tBank</h2>
+                      <!-- Bill Payment API-->
+                      <h2 style="color:#937851">1. Payment via tBank Account</h2>
+                      <div class="col-md-6">
+                        <form class="form-horizontal well" style="padding-bottom: 0px;">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text">Account FROM</span>
+                            </div>
+                            <input id="accountFrom" type="text" class="form-control" placeholder=" eg. 6890">
+                            <input id="accountTo" type="text" value= "6699" class="form-control" hidden>
+                          </div>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text">Transaction Amount</span>
+                            </div>
+                            <input id="transactionAmount" type="text" class="form-control">
+                          </div>
+                            <input id="transactionReferenceNumber" value="100" type="text" class="form-control" placeholder="10" hidden>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text">Narrative</span>
+                            </div>
+                            <input id="narrative" type="text" value="bill" class="form-control" placeholder="10">
+                          </div>
+                          <div style="color: red;" id="error"></div>
+                          <div class="form-group">
+                            <button id="Send" type="button" class="btn btn-primary Send">Pay</button>
+                            <button type="reset" class="btn btn-default">Clear</button>
+                          </div>                  
+                        </form>
+                    </div>
+                    <!-- Loan API -->
 
-        <div class="col-md-6">
-          <form class="form-horizontal well" style="padding-bottom: 0px;">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-              <span class="input-group-text">User ID</span>
+                    <h2 style="color:#937851">2. Payment via tBank Loans</h2>
+                    <br>
+                    <h5> Calculate loan details now!</h5>
+                    <br/>
+                <div class="col-md-6">
+                  <form>
+                    <input id="LoanproductID" type="text" class="form-control" value="201" hidden/>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                      <span class="input-group-text">Loan Amount</span>
+                      </div>
+                      <input id="requestedAmount" type="text" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                      <span class="input-group-text">Number of Months</span>
+                      </div>
+                      <input id="LoannumberOfMonths" type="text" class="form-control">
+                    </div>               
+                    <div class="form-group">
+                      <button id="RequestLoan" type="button" class="btn btn-primary">Calculate Payment!</button>
+                      <button type="Lreset" class="btn btn-default">Clear</button>
+                    </div>
+                    <div style="color: red;" id="LoanRequestError"></div>
+                  </form>
+                  </div>
+
+                  <!-- Apply Loan -->
+                  <h5>Interested? Apply for a loan now!</h5>
+        <!-- <h4>Get a loan from tBank to pay your insurance!</h4> -->
+        <!-- <a href="Loans.html" class="btn btn-primary btn-lg mb30">Calculate attractive offers!</a> -->
+        <!-- <br><br><br><br> -->
+            <div class="col-md-6">
+              <form class="form-horizontal well" style="padding-bottom: 0px;">
+                <input id="productID" type="text" class="form-control" value="205" hidden/>
+                <input id="LOTP" type="text" class="form-control" placeholder="10" value="999999" hidden>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Account</span>
+                  </div>
+                  <input id="settlementAccount" type="text" class="form-control" placeholder=" eg. 6890">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Loan Amount</span>
+                  </div>
+                  <input id="loanAmount" type="text" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Number of Months</span>
+                  </div>
+                  <input id="numberOfMonths" type="text" class="form-control">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Loan Purpose</span>
+                  </div>
+                  <input id="loanPurpose" type="text" class="form-control">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">Asset Value</span>
+                  </div>
+                  <input id="assetValue" type="text" class="form-control">
+                </div>
+                <input id="currency" value="SGD" type="text" class="form-control" hidden>           
+                <div style="color: red;" id="LoanError"></div>
+                <div class="form-group">
+                  <button id="LSend" type="button" class="btn btn-primary">Apply for a loan!</button>
+                  <button type="Lreset" class="btn btn-default">Clear</button>
+                </form>
+                </div>
+                </div>
+               </div>
               </div>
-              <input id="userID" type="text" class="form-control">
-              <div class="input-group-prepend">
-              <span class="input-group-text">Password</span>
+              <div class="card">
+                  <div class="card-header" id="headingTwo">
+                      <h2 class="mb-0">
+                          <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"><i class="fa fa-plus"></i> Credit Card Payment</button>
+                      </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+                            <h2>2. Pay using Credit Card</h2>
+                            <br>    
+                            <h2>Personal details</h2>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <label class="input-group-text" for="Salutation">Salutation</label>
+                            </div>
+                            <select class="custom-select" id="Salutation">
+                            <option selected>Choose...</option>
+                            <option value="mr">Mr</option>
+                            <option value="mrs">Mrs</option>
+                            <option value="miss">Miss</option>
+                            <option value="ms">Ms</option>
+                            <option value="madam">Madam</option>
+                            </select>
+                          </div>
+                
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="firstname">First name</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="John" aria-label="First name" aria-describedby="basic-addon1">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="lastname">Last name</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Doe" aria-label="Last name" aria-describedby="basic-addon1">
+                          </div>
+                          
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="nric">NRIC/FIN</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="NRIC/FIN" aria-label="NRIC/FIN" aria-describedby="basic-addon1">
+                          </div>
+                          
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="nric">Email</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="johndoe@gmail.com" aria-label="Email" aria-describedby="basic-addon1">
+                          </div>
+                                  
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="phone">Phone</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon1">
+                          </div>
+                          
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="address">Address</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="123 Happy Street #12-123" aria-label="address" aria-describedby="basic-addon1">
+                          </div>
+                          
+                                    <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="address">Country</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Singapore" aria-label="country" aria-describedby="basic-addon1">
+                
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="address">State</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Singapore" aria-label="state" aria-describedby="basic-addon1">
+                
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="address">Zip</span>
+                            </div>
+                            <input type="text" class="form-control fix-rounded-right" placeholder="123456" aria-label="zip" required>
+                            <div class="invalid-feedback">
+                            Please choose a username.
+                            </div>
+                          </div><br>
+                          
+                          
+                          <hr>
+                          
+                        <div class="input-group mb-3">
+                          <h2>Payment</h2>
+                            <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="nameoncard">Name on card</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="John Doe" aria-label="nameoncard" aria-describedby="basic-addon1">
+                          </div>
+                          
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="nameoncard">Credit card number</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="11223344556677" aria-label="credit card number" aria-describedby="basic-addon1">
+                          </div>
+                          
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="expiration">Expiration</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="04/22" aria-label="expiration" aria-describedby="basic-addon1">
+                
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="cvv">CVV</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="650" aria-label="cvv" aria-describedby="basic-addon1">
+                          </div>
+                        
+                        </div>
+                        
+                        <hr>
+                          
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck1">
+                          <label class="custom-control-label" for="customCheck1">I agree to the above terms & condition</label>
+                        </div>
+                        
+                        <hr>
+                          
+                                    <a href="#" class="btn btn-primary btn-lg mb30">Continue to Checkout</a>
+                                </div>
+                
+                  
+                                
+                            </div>
+                      </div>
+                  </div>
               </div>
-              <input id="PIN" type="password" class="form-control">
-            </div>
-            <div class="form-group">
-              <button id="Login" type="button" class="btn btn-primary">Login</button>
-              <button type="reset" class="btn btn-default">Clear</button>
-            </div> 
-          </form>
-          
-          
+          </div>
       </div>
-
-        
-    <div class="container">
-    <div class="col-md-6">
-        <form class="form-horizontal well" style="padding-bottom: 0px;">
-          <div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text">Account FROM</span>
-					  </div>
-					  <input id="accountFrom" type="text" class="form-control" placeholder=" eg. 6890">
-					  <input id="accountTo" type="text" value= "6699" class="form-control" hidden>
-          </div>
-          <div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text">Transaction Amount</span>
-					  </div>
-					  <input id="transactionAmount" type="text" class="form-control">
-          </div>
-					  <input id="transactionReferenceNumber" value="100" type="text" class="form-control" placeholder="10" hidden>
-          <div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text">Narrative</span>
-					  </div>
-					  <input id="narrative" type="text" value="bill" class="form-control" placeholder="10">
-          </div>
-          <div style="color: red;" id="error"></div>
-          <div class="form-group">
-            <button id="Send" type="button" class="btn btn-primary Send">Pay</button>
-            <button type="reset" class="btn btn-default">Clear</button>
-          </div> 
-          
-        </form>
-        
-        
-    </div>
-    </div>
 
 <!-- javascript libraries
 ======================================== -->
@@ -222,6 +441,9 @@ $(document).ready(function(){
                     sessionStorage.setItem("PIN", PIN);
 
                     document.getElementById("Title").innerHTML = 'You are logged in as tBank user: ' + sessionStorage.getItem("UserID");
+                    // $("#userID").prop("disabled", true);
+                    // $("#PIN").prop("disabled", true);
+                    $("#loginForm").hide();
                     // document.getElementById("BankID").value = BankID;
                     // document.getElementById("CustomerID").value = CustomerID;
                   }
@@ -482,7 +704,7 @@ $(document).ready(function(){
               var serviceName = "billPayment";
               var userID = sessionStorage.getItem("UserID")
               var PIN = sessionStorage.getItem("PIN")
-              var OTP = document.getElementById("OTP").value;
+              var OTP = '999999'
               
               // get and validate form values
               var accountFrom = document.getElementById("accountFrom").value;
@@ -543,11 +765,11 @@ $(document).ready(function(){
                       console.log(responseObj);
                       serviceRespHeader = responseObj.Content.ServiceResponse.ServiceRespHeader;
                       globalErrorID = serviceRespHeader.GlobalErrorID;
-                      if (globalErrorID === "010041"){
-                         showOTPModal();
-                          return;
-                      }
-                      else if (globalErrorID !== "010000"){
+                      // if (globalErrorID === "010041"){
+                        //  showOTPModal();
+                      //     return;
+                      // }
+                      if (globalErrorID !== "010000"){
                           showErrorModal(serviceRespHeader.ErrorDetails);
                           return;
                       }
@@ -558,6 +780,7 @@ $(document).ready(function(){
 
                       // display data
                       document.getElementById("transactionID").innerHTML = transactionID;
+                      $("#confirmationModal").modal('show');
                       // document.getElementById("balanceBefore").value = addCommas(balanceBefore);
                       // document.getElementById("balanceAfter").value = addCommas(balanceAfter);
                       
@@ -613,86 +836,32 @@ $(document).ready(function(){
     $("#otpModal").modal('hide');
     $("#confirmationModal").modal('show');
   });
+
+  // Add minus icon for collapse element which is open by default
+  $(".collapse.show").each(function(){
+        	$(this).prev(".card-header").find(".fa").addClass("fa-minus").removeClass("fa-plus");
+        });
+        
+        // Toggle plus minus icon on show hide of collapse element
+        $(".collapse").on('show.bs.collapse', function(){
+        	$(this).prev(".card-header").find(".fa").removeClass("fa-plus").addClass("fa-minus");
+        }).on('hide.bs.collapse', function(){
+        	$(this).prev(".card-header").find(".fa").removeClass("fa-minus").addClass("fa-plus");
+        });
+
 })
-  
+
+
 </script>
 
         <!-- End tBank API for direct debit -->
         <div class="container">
         <div class="col-md-6">
-        <h2 style="color:#937851">2. Payment via tBank Loans</h2>
-        <br>
-        <h5> Calculate loan details now!</h5>
-        <br/>
-      <form>
-        <input id="LoanproductID" type="text" class="form-control" value="201" hidden/>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-          <span class="input-group-text">Loan Amount</span>
-          </div>
-          <input id="requestedAmount" type="text" class="form-control">
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-          <span class="input-group-text">Number of Months</span>
-          </div>
-          <input id="LoannumberOfMonths" type="text" class="form-control">
-        </div>               
-        <div class="form-group">
-          <button id="RequestLoan" type="button" class="btn btn-primary">Calculate Payment!</button>
-          <button type="Lreset" class="btn btn-default">Clear</button>
-        </div>
-        <div style="color: red;" id="LoanRequestError"></div>
-      </form>
+        
 
 
         
-        <h5>Interested? Apply for a loan now!</h5>
-        <!-- <h4>Get a loan from tBank to pay your insurance!</h4> -->
-        <!-- <a href="Loans.html" class="btn btn-primary btn-lg mb30">Calculate attractive offers!</a> -->
-        <!-- <br><br><br><br> -->
         
-              <form class="form-horizontal well" style="padding-bottom: 0px;">
-                <input id="productID" type="text" class="form-control" value="205" hidden/>
-                <input id="LOTP" type="text" class="form-control" placeholder="10" value="999999" hidden>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Account</span>
-                  </div>
-                  <input id="settlementAccount" type="text" class="form-control" placeholder=" eg. 6890">
-                </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Loan Amount</span>
-                  </div>
-                  <input id="loanAmount" type="text" class="form-control">
-                </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Number of Months</span>
-                  </div>
-                  <input id="numberOfMonths" type="text" class="form-control">
-                </div>
-
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Loan Purpose</span>
-                  </div>
-                  <input id="loanPurpose" type="text" class="form-control">
-                </div>
-
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">Asset Value</span>
-                  </div>
-                  <input id="assetValue" type="text" class="form-control">
-                </div>
-                <input id="currency" value="SGD" type="text" class="form-control" hidden>           
-                <div style="color: red;" id="LoanError"></div>
-                <div class="form-group">
-                  <button id="LSend" type="button" class="btn btn-primary">Apply for a loan!</button>
-                  <button type="Lreset" class="btn btn-default">Clear</button>
-                </div>
 
                 <!-- loans api  -->
 
@@ -751,18 +920,16 @@ $(document).ready(function(){
                 <div id="confirmationModal" class="modal fade">
                   <div class="modal-dialog modal-confirm">
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <div class="icon-box">
-                          <i class="material-icons">&#xE876;</i>
-                        </div>				
+                      <div class="modal-header">				
                         <h4>Awesome!</h4>	
                       </div>
                       <div class="modal-body">
                         <p class="text-center">Your payment has been confirmed!</p>
                         <p class="text-center"> Transaction ID is <label id="transactionID"></label> </p>
+                        <p class="text-center">You will receive a confirmation email soon!</p>
                       </div>
                       <div class="modal-footer">
-                        <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                        <button onclick="window.location='./index.html'" class="btn btn-success btn-block" data-dismiss="modal">OK</button>
                       </div>
                     </div>
                   </div>
@@ -795,165 +962,7 @@ $(document).ready(function(){
           
       </div>
         
-        <div class="row">
-          <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
-            <h2>2. Pay using Credit Card</h2>
-            <br>    
-				    <h2>Personal details</h2>
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<label class="input-group-text" for="Salutation">Salutation</label>
-					  </div>
-					  <select class="custom-select" id="Salutation">
-						<option selected>Choose...</option>
-						<option value="mr">Mr</option>
-						<option value="mrs">Mrs</option>
-						<option value="miss">Miss</option>
-						<option value="ms">Ms</option>
-						<option value="madam">Madam</option>
-					  </select>
-					</div>
-
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="firstname">First name</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="John" aria-label="First name" aria-describedby="basic-addon1">
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="lastname">Last name</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="Doe" aria-label="Last name" aria-describedby="basic-addon1">
-					</div>
-					
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="nric">NRIC/FIN</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="NRIC/FIN" aria-label="NRIC/FIN" aria-describedby="basic-addon1">
-					</div>
-					
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="nric">Email</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="johndoe@gmail.com" aria-label="Email" aria-describedby="basic-addon1">
-					</div>
-                  
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="phone">Phone</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon1">
-					</div>
-					
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="address">Address</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="123 Happy Street #12-123" aria-label="address" aria-describedby="basic-addon1">
-					</div>
-					
-                    <div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="address">Country</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="Singapore" aria-label="country" aria-describedby="basic-addon1">
-
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="address">State</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="Singapore" aria-label="state" aria-describedby="basic-addon1">
-
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="address">Zip</span>
-					  </div>
-					  <input type="text" class="form-control fix-rounded-right" placeholder="123456" aria-label="zip" required>
-					  <div class="invalid-feedback">
-						Please choose a username.
-					  </div>
-					</div><br>
-					
-					
-					<hr>
-					
-				<div class="input-group mb-3">
-					<h2>Payment</h2>
-				    <div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="nameoncard">Name on card</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="John Doe" aria-label="nameoncard" aria-describedby="basic-addon1">
-					</div>
-					
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="nameoncard">Credit card number</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="11223344556677" aria-label="credit card number" aria-describedby="basic-addon1">
-					</div>
-					
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="expiration">Expiration</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="04/22" aria-label="expiration" aria-describedby="basic-addon1">
-
-					  <div class="input-group-prepend">
-						<span class="input-group-text" id="cvv">CVV</span>
-					  </div>
-					  <input type="text" class="form-control" placeholder="650" aria-label="cvv" aria-describedby="basic-addon1">
-					</div>
-				
-				</div>
-				
-				<hr>
-					
-				<div class="custom-control custom-checkbox">
-				  <input type="checkbox" class="custom-control-input" id="customCheck1">
-				  <label class="custom-control-label" for="customCheck1">I agree to the above terms & condition</label>
-				</div>
-				
-				<hr>
-					
-                    <a href="#" class="btn btn-primary btn-lg mb30">Continue to Checkout</a>
-                </div>
-
-	
-                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                  
-                    <div class="widget">
-                        <h4 class="widget-title">Order Summary</h4>
-                        <div class="summary-block">
-                            <div class="summary-content">
-                                <div class="summary-head"><h5 class="summary-title">Personal</h5></div>
-                                <div class="summary-price">
-                                    <p class="summary-text">$29</p>
-                                    <span class="summary-small-text pull-right">1 month</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="summary-block"> -->
-                            <!-- <div class="summary-content"> -->
-                               <!-- <div class="summary-head"> <h5 class="summary-title">Website Security Essential</h5></div> -->
-                                <!-- <div class="summary-price"> -->
-                                    <!-- <p class="summary-text">$229 / mo</p> -->
-                                    <!-- <span class="summary-small-text pull-right">1 month</span> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-                        <!-- </div> -->
-                        <!-- <div class="summary-block"> -->
-                            <!-- <div class="summary-content"> -->
-                               <!-- <div class="summary-head"> <h5 class="summary-title">Total</h5></div> -->
-                                <!-- <div class="summary-price"> -->
-                                    <!-- <p class="summary-text">$258 / mo</p> -->
-                                    <!-- <span class="summary-small-text pull-right">1 month</span> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-                        <!-- </div> -->
-                    </div>
-                   
-                </div>
-            </div>
+        
       </div>
       </section>
 
