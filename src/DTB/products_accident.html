@@ -236,7 +236,7 @@
             sessionStorage.setItem('item', item['Name']);
             item['Cost'] = parseFloat(item['Cost'].replace('S$', ''))
             sessionStorage.setItem('price', item['Cost']);
-            window.location.href='cart.html'
+            window.location.href='cart.html';
           `)
           trNode.appendChild(addToCartBtn);
           tbodyNode.appendChild(trNode);
