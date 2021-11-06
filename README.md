@@ -1,6 +1,6 @@
 # DTB – the one-stop portal to find your ideal insurance provider</h3>
 
-Application built for SMU IS444 Digital Banking & Enterprise Architecture project.
+Insurance e-commerce application built for SMU IS444 Digital Banking & Enterprise Architecture in 2020.
 
 A fintech solution that serves as the intermediary one-stop platform between SMU tBank and insurance providers that allows customers to browse, compare and purchase insurance products conveniently.
 
